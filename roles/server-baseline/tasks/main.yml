@@ -16,3 +16,10 @@
   command: which {{ item }}
   loop: "{{ base_packages }}"
   changed_when: false
+
+- name: Update SSH config
+  lineinfile:
+    path: /etc/ssh/sshd_config
+    regexp: '^#?PermitRootLogin'
+    line: 'PermitRootLogin no'
+  notify: restart ssh
