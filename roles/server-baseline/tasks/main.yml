@@ -5,9 +5,9 @@
 
 - name: Install base packages
   apt:
-    name:
-      - curl
-      - vim
-      - git
-      - htop
+    name: "{{ base_packages }}"
     state: present
+
+- name: Set timezone
+  timezone:
+    name: "{{ timezone }}"
