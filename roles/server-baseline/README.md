@@ -1,38 +1,130 @@
-This is Mohammed Ahmed Mourad's Role
-=========
+# Server Baseline Role
 
-A brief description of the role goes here.
+## Role Purpose
 
-Requirements
-------------
+This role provides a **standardized Linux server baseline** by automating common system configuration tasks using Ansible.
 
-Any pre-requisites that may not be covered by Ansible itself or the role should be mentioned here. For instance, if the role uses the EC2 module, it may be a good idea to mention in this section that the boto package is required.
+It is intended to be used as a reusable foundation for newly provisioned servers, ensuring consistency, security, and reduced manual setup.
 
-Role Variables
---------------
+The role is designed to be simple, extensible, and suitable for real-world environments.
 
-A description of the settable variables for this role should go here, including any variables that are in defaults/main.yml, vars/main.yml, and any variables that can/should be set via parameters to the role. Any variables that are read from other roles and/or the global scope (ie. hostvars, group vars, etc.) should be mentioned here as well.
+---
 
-Dependencies
-------------
+## What This Role Does
 
-A list of other roles hosted on Galaxy should go here, plus any details in regards to parameters that may need to be set for other roles, or variables that are used from other roles.
+This role performs essential baseline operations commonly required on Linux servers, including:
 
-Example Playbook
-----------------
+- Applying basic system configuration
+- Installing commonly required utility packages
+- Ensuring required services are enabled and running
+- Restarting or reloading services when configuration changes occur using handlers
+- Enforcing consistent configuration through variable-driven design
 
-Including an example of how to use your role (for instance, with variables passed in as parameters) is always nice for users too:
+---
 
-    - hosts: servers
-      roles:
-         - { role: username.rolename, x: 42 }
+## Supported Platforms
 
-License
--------
+This role is designed for Linux systems and has been tested on:
 
-BSD
+- Ubuntu
+- Debian-based distributions
 
-Author Information
-------------------
+Other Linux distributions may work but are not officially tested.
 
-An optional section for the role authors to include contact information, or a website (HTML is not allowed).
+---
+
+## Role Structure
+
+The role follows Ansible best practices and is structured as follows:
+
+- `tasks`  
+  Contains the main execution logic of the role
+
+- `handlers`  
+  Contains reactive tasks triggered only when changes occur
+
+- `defaults`  
+  Contains safe default values intended for customization
+
+- `vars`  
+  Contains internal variables used by the role logic
+
+- `meta`  
+  Defines role metadata and dependencies
+
+- `tests`  
+  Provides simple test playbooks for validation
+
+---
+
+## Variables
+
+### Default Variables
+
+The following variables can be safely overridden:
+
+| Variable Name      | Default Value   | Description                    |
+|--------------------|-----------------|--------------------------------|
+| example_variable   | default_value   | Example configurable variable  |
+
+All configurable values are defined in `defaults` to allow customization without modifying role logic.
+
+---
+
+### Vars Variables
+
+Variables defined in `vars` are intended for internal use and should not be overridden unless the role logic is fully understood.
+
+---
+
+## Handlers
+
+Handlers are used to perform reactive operations such as:
+
+- Restarting services
+- Reloading service configurations
+
+They are executed only when notified by a task, ensuring efficient and idempotent execution.
+
+---
+
+## Example Usage
+
+This role can be included in a playbook as follows:
+
+- Define an inventory file
+- Include the role in your playbook
+- Override variables if required
+- Run the playbook using Ansible
+
+Example workflow:
+
+- `ansible-playbook site.yml -i inventory`
+
+---
+
+## Testing
+
+Basic testing files are provided under the `tests` directory to validate role behavior in an isolated environment.
+
+---
+
+## Future Improvements
+
+Planned enhancements may include:
+
+- Support for additional Linux distributions
+- Extended system hardening options
+- Additional configurable components
+
+---
+
+## Author
+
+Maintained by Mohammed Ahmed Mourad.
+
+---
+
+## License
+
+MIT
