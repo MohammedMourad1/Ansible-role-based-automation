@@ -1,4 +1,5 @@
 # 🚀 Ansible Role-Based Automation
+<img width="1530" height="515" alt="image" src="https://github.com/user-attachments/assets/16ead1e3-3a17-4142-9878-4d207da079a9" />
 
 ## 📌 Overview
 
